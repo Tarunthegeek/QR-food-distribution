@@ -1,65 +1,121 @@
-import Image from "next/image";
+import Link from 'next/link';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main
+      className="home"
+      style={{
+        minHeight: '100dvh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem var(--page-px) 3rem',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Decorative blobs */}
+      <div aria-hidden style={{
+        position: 'absolute', top: '-10%', left: '50%', transform: 'translateX(-50%)',
+        width: 'min(600px, 120vw)', height: 'min(600px, 120vw)',
+        borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+      <div aria-hidden style={{
+        position: 'absolute', bottom: '5%', right: '-5%',
+        width: 260, height: 260, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(255,101,132,0.08) 0%, transparent 70%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{ textAlign: 'center', maxWidth: 480, width: '100%', position: 'relative' }}>
+
+        {/* App icon */}
+        <div style={{
+          width: 88, height: 88, borderRadius: '1.75rem',
+          background: 'linear-gradient(135deg, #7c73ff 0%, #ff6584 100%)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '2.4rem', margin: '0 auto 1.75rem',
+          boxShadow: '0 16px 48px rgba(108,99,255,0.45), 0 0 0 1px rgba(255,255,255,0.1) inset',
+          animation: 'floatIcon 4s ease-in-out infinite',
+        }} aria-hidden>🍱</div>
+
+        {/* Title */}
+        <h1 style={{
+          fontSize: 'clamp(2.4rem, 6vw, 3.5rem)',
+          fontWeight: 900, margin: '0 0 0.6rem',
+          letterSpacing: '-0.04em', lineHeight: 1.1,
+        }}>
+          <span className="gradient-text">FoodPass</span>
+        </h1>
+
+        <p style={{
+          color: 'var(--text-sub)', fontSize: 'clamp(1rem, 2.5vw, 1.1rem)',
+          marginBottom: '2.5rem', lineHeight: 1.7, maxWidth: 380,
+          marginLeft: 'auto', marginRight: 'auto',
+        }}>
+          QR-powered food distribution for college events.
+          Fast, offline-ready, and duplicate-proof.
+        </p>
+
+        {/* Feature pills */}
+        <div style={{
+          display: 'flex', flexWrap: 'wrap', gap: '0.5rem',
+          justifyContent: 'center', marginBottom: '2.5rem',
+        }}>
+          {[
+            { icon: '⚡', label: 'Instant scan' },
+            { icon: '📴', label: 'Works offline' },
+            { icon: '🔒', label: 'No duplicates' },
+            { icon: '🍽️', label: 'Multi-meal' },
+          ].map(f => (
+            <span key={f.label} style={{
+              display: 'flex', alignItems: 'center', gap: '0.35rem',
+              padding: '0.35rem 0.9rem', borderRadius: '999px',
+              background: 'rgba(255,255,255,0.05)',
+              border: '1px solid rgba(255,255,255,0.09)',
+              fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-sub)',
+            }}>
+              <span>{f.icon}</span>{f.label}
+            </span>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Action buttons */}
+        <nav
+          className="home-actions"
+          aria-label="Primary actions"
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', alignItems: 'center' }}
+        >
+          <Link href="/scan" className="btn btn-primary btn-lg" style={{ justifyContent: 'center' }}>
+            <span aria-hidden>📷</span> Open Scanner
+          </Link>
+
+          <div style={{ display: 'flex', gap: '0.65rem', width: '100%', maxWidth: 380 }}>
+            <Link href="/admin" className="btn btn-secondary" style={{ justifyContent: 'center', flex: 1, fontSize: '0.95rem', minHeight: '2.8rem' }}>
+              <span aria-hidden>🛠️</span> Admin
+            </Link>
+            <Link href="/generate" className="btn btn-secondary" style={{ justifyContent: 'center', flex: 1, fontSize: '0.95rem', minHeight: '2.8rem' }}>
+              <span aria-hidden>🔖</span> Generate QR
+            </Link>
+          </div>
+        </nav>
+
+        {/* Footer note */}
+        <p style={{ marginTop: '2.75rem', fontSize: '0.8rem', color: 'var(--muted)', lineHeight: 1.6 }}>
+          Scan a wristband QR code at each serving station.<br />
+          Each meal is independently tracked per participant.
+        </p>
+      </div>
+
+      <style>{`
+        @keyframes floatIcon {
+          0%, 100% { transform: translateY(0); }
+          50%       { transform: translateY(-8px); }
+        }
+      `}</style>
+    </main>
   );
 }
